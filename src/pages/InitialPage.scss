@@ -1,0 +1,22 @@
+.decision-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+
+  .decision-button {
+    width: 45%;
+    padding: 0.75rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #3d91ff;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #2b6cd6;
+    }
+  }
+}

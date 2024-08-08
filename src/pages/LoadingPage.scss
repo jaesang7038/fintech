@@ -1,0 +1,178 @@
+#loading {
+  $colors: #2172b8, #18a39b, #82c545, #f8b739, #f06045, #ed2861, #c12680, #5d3191;
+
+  $inner: 30px;
+  $border: 6px;
+  $spacing: 1px;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  @mixin keyframes($name) {
+    @keyframes #{$name} {
+      @content;
+    }
+  }
+
+  @mixin rotate($deg) {
+    transform: rotate($deg);
+  }
+
+  @mixin transform-origin($x, $y, $z) {
+    transform-origin: $x $y $z;
+  }
+
+  @mixin animation($name, $duration, $iteration, $timing-function) {
+    animation: $name $duration $iteration $timing-function;
+  }
+
+  section.wrapper {
+    padding: 40px 0;
+
+    &.dark {
+      background: #313134;
+    }
+  }
+
+  div.spinner {
+    @include animation(rotate, 10s, infinite, linear);
+    position: relative;
+    display: block;
+
+    margin: auto;
+
+    $size: $inner + length($colors) * ($border + $spacing) * 2;
+
+    width: $size;
+    height: $size;
+
+    i {
+      @include animation(rotate, 3s, infinite, cubic-bezier(.09, .6, .8, .03));
+      @include transform-origin(50%, 100%, 0);
+
+      position: absolute;
+      display: inline-block;
+
+      top: 50%;
+      left: 50%;
+
+      border: solid $border transparent;
+      border-bottom: none;
+
+      @each $current in $colors {
+        $i: index($colors, $current);
+
+        &:nth-child(#{$i}) {
+          $size: $inner + $i * ($border + $spacing) * 2;
+
+          animation-timing-function: cubic-bezier(.09, .3 * $i, .12 * $i, .03);
+
+          width: $size;
+          height: $size / 2;
+
+          margin-top: -$size / 2;
+          margin-left: -$size / 2;
+
+          border-color: $current;
+
+          border-top-left-radius: $inner + $i * $border;
+          border-top-right-radius: $inner + $i * $border;
+        }
+      }
+    }
+  }
+
+  @include keyframes(rotate) {
+    to {
+      @include rotate(360deg);
+    }
+  }
+
+  .loading-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 50%;
+      height: auto;
+    }
+  }
+
+  .sol-event-wrap {
+    .notice{
+      font-size: 1.4rem;
+      font-weight: 1000;
+      color: #3B5998;
+    }
+    .sol-event-list {
+      display: flex;
+      flex-direction: row;
+      justify-content: start;
+      align-items: stretch; // 모든 자식 요소가 부모 컨테이너의 높이를 가득 채우도록 설정
+      background-color: rgba(61, 145, 255,0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      border-radius: 0.5rem;
+      padding: 0.7rem;
+      margin-top: 1rem;
+      .img-wrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px; /* 이미지 컨테이너의 너비 */
+        height: 60px; /* 이미지 컨테이너의 높이 */
+        overflow: hidden; /* 넘어가는 이미지를 숨김 처리 */
+      }
+      
+      .company-img {
+        margin-right: 1.3rem;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-height: 100%;
+        max-width: 100%;
+      }
+      
+      .company-img img {
+        max-width: 100%; /* 컨테이너의 최대 너비에 맞춤 */
+        max-height: 100%; /* 컨테이너의 최대 높이에 맞춤 */
+        height: auto; /* 원본 비율을 유지하면서 높이 자동 조절 */
+        width: auto; /* 원본 비율을 유지하면서 너비 자동 조절 */
+      }
+      
+
+      
+
+      .sol-event {
+        flex-grow: 3; // 텍스트 영역이 이미지보다 큰 공간을 차지하도록 설정
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        justify-content: center;
+
+        .grey-txt {
+          color: grey;
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+
+        .title {
+          font-size: 1rem;
+          font-weight: 600;
+        }
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+
+
+}

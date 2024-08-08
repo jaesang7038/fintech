@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Main from "./pages/Main";
+import NextPage from "./pages/NextPage";
+import InitialPage from "./pages/InitialPage";
+import DestinationSelectionPage from "./pages/DestinationSelectionPage";
+import RecommendationPage from "./pages/RecommendationPage";
+import "./App.css"
+import DayPlanPage from "./pages/DayPlanPage";
+import LoadingPage from "./pages/LoadingPage";
+import TempMap from "./pages/TempMAp";
+
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/next" element={<NextPage />} />
+        <Route path="/country" element={<InitialPage />} />
+        <Route path="/select-destination" element={<DestinationSelectionPage />} />
+        <Route path="/recommendation" element={<RecommendationPage />} />
+        <Route path="/day-plan" element={<DayPlanPage />} />
+        <Route path="/loading" element={<LoadingPage />} />
+        <Route path="/temp" element={<TempMap />} />
+        {/* Define other routes here */}
+      </Routes>
+    </BrowserRouter>
   );
 }
 

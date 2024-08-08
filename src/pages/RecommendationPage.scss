@@ -1,0 +1,76 @@
+
+.animated-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #3d91ff;
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
+  text-align: center !important;
+}
+
+.sub-text{
+  margin-top: 0.7rem !important;
+  text-align: center !important;
+}
+
+.header{
+  margin-bottom: 1.5rem  !important;
+}
+
+
+.form {
+  padding-bottom: 32px;
+  .recommendation-card {
+
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    max-width: 350px;
+    margin: 0 auto;
+
+    .recommendation-image {
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      width: 350px !important;
+      height: 350px !important;
+    }
+
+    .br{
+      height: 15px;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 0.5rem 0;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #666666;
+      margin-bottom: 1rem;
+    }
+
+    .select-button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+      background-color: #3d91ff;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: 100%;
+
+      &:hover {
+        background-color: #2b6cd6;
+      }
+    }
+  }
+  
+}

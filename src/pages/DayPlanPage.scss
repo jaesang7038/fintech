@@ -1,0 +1,270 @@
+#day-plan {
+    .form-container {
+        overflow: scroll;
+        height: 90%;
+        max-width: 600px !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .day-selector {
+        margin-bottom: 40px;
+
+        .slick-list {
+            overflow: hidden;
+            /* 범위를 넘어가면 숨기기 */
+            margin: 0 -5px;
+            /* 슬라이드 양쪽에 여백 추가 */
+        }
+
+        .slick-track {
+            display: flex;
+            margin: 0;
+        }
+
+        .slick-slide {
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+            height: auto !important;
+            /* 슬라이더의 높이를 자동으로 설정 */
+            width: auto !important;
+            /* width를 자동으로 설정 */
+            margin: 0 5px;
+            /* 슬라이드 간의 간격 설정 */
+        }
+
+        .day-button {
+            height: 70px;
+            width: 70px !important;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            background-color: #f2f1f8;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            box-sizing: border-box;
+
+            &.selected {
+                background-color: #3d91ff;
+                color: #ffffff;
+            }
+
+            &:hover {
+                background-color: #3d91ff;
+                color: #ffffff;
+            }
+
+            p {
+                margin: 0;
+            }
+
+            p:nth-child(1) {
+                font-size: 0.7rem;
+                font-weight: 400;
+            }
+
+            p:nth-child(2) {
+                margin-top: 5px;
+                font-size: 1rem;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .carousel-button,
+    .slick-arrow {
+        //     position: absolute;
+        //     top: 50%;
+        //     transform: translateY(-50%);
+        //     background: rgba(255, 255, 255, 0.8);
+        //     border: none;
+        //     font-size: 24px;
+        //     cursor: pointer;
+        //     z-index: 1;
+
+        &.slick-disabled {
+            display: none !important;
+        }
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+        color: #3d91ff;
+    }
+
+    // .slick-prev {
+    //     left: 0;
+    // }
+
+    // .slick-next {
+    //     right: 0;
+    // }
+    .places-list {
+        margin-top: 1rem;
+        position: relative;
+
+        .place-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0;
+            position: relative;
+
+            .icon {
+                margin-right: 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                position: relative;
+                z-index: 5;
+                background: none;
+                border: none;
+                fill: #3d91ff;
+
+                &::before {
+                    content: attr(data-index);
+                    position: absolute;
+                    top: -15px;
+                    left: -15px;
+                    background: #fff;
+                    border-radius: 50%;
+                    width: 20px;
+                    height: 20px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 0.75rem;
+                    font-weight: 500;
+                    color: #fff;
+                    border: 1px solid #ccc;
+                    z-index: 10;
+                }
+
+                svg {
+                    width: 100%;
+                    height: 100%;
+                }
+
+                &.airport::before {
+                    background-color: rgba(93, 61, 255, 0.574);
+                }
+
+                &.restaurant::before {
+                    background-color: #efb8e6f1;
+                }
+
+                &.accommodation::before {
+                    background-color: #ffa797;
+                }
+
+                &.tourist::before {
+                    background-color: #32cd3297;
+                }
+
+                &.normal::before {
+                    background-color: #e0e0e0;
+                    color: #000;
+                }
+            }
+
+            .content {
+                display: flex;
+                align-items: center;
+                text-align: left;
+                width: 100%;
+                background-color: #efefef;
+                border-radius: 10px;
+                overflow: hidden;
+
+                .image {
+                    margin-right: 1rem;
+                    width: 150px;
+                    height: 150px;
+                    flex-shrink: 0;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .text {
+                    padding: 0.5rem;
+
+                    .name {
+                        font-size: 1rem;
+                        font-weight: bold;
+                    }
+
+                    .description {
+                        font-size: 0.8rem;
+                        color: #666666;
+                    }
+                }
+            }
+
+            &::before {
+                content: attr(data-distance);
+                position: absolute;
+                left: 0px;
+                top: calc(-7%);
+                /* 아이콘 하단 위치 */
+                transform: translateY(-50%);
+                font-size: 0.75rem;
+                font-weight: 600;
+                color: black;
+                background: #fff;
+                padding: 2px 5px;
+                border-radius: 10px;
+                white-space: nowrap;
+                z-index: 2;
+            }
+
+            &:first-child::before {
+                display: none;
+                /* 마지막 아이템은 점선을 표시하지 않음 */
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                left: 18.21px;
+                /* 아이콘의 중앙 위치 */
+                top: 83px;
+                /* 아이콘 하단 위치 */
+                bottom: -83px;
+                /* 다음 아이콘의 상단 위치 */
+                width: 1px;
+                background: repeating-linear-gradient(to bottom,
+                        #cccccc,
+                        #cccccc 2px,
+                        transparent 2px,
+                        transparent 4px);
+                z-index: 1;
+            }
+
+
+
+            &:last-child::after {
+                display: none;
+                /* 마지막 아이템은 점선을 표시하지 않음 */
+            }
+        }
+    }
+
+    .map-wrap {
+        max-width: 600px;
+        height: 400px;
+    }
+
+    .gm-style-iw-chr {
+        height: 30px;
+    }
+}
