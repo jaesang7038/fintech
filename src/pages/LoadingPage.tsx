@@ -303,7 +303,71 @@ const LoadingPage: React.FC = () => {
         Phuket Aquarium, lat: 7.8111, lng: 98.4055
         Bang Pae Waterfall, lat: 8.0415, lng: 98.4256
         Khao Rang Hill Viewpoint, lat: 7.8804, lng: 98.3923
+        Marble Mountains, lat: 16.0067, lng: 108.2486
+        My Khe Beach, lat: 16.0539, lng: 108.2481
+        Dragon Bridge, lat: 16.0597, lng: 108.2239
+        Linh Ung Pagoda, lat: 16.1107, lng: 108.2837
+        Ba Na Hills, lat: 15.9977, lng: 107.9884
+        Son Tra Peninsula, lat: 16.1400, lng: 108.2833
+        Han Market, lat: 16.0740, lng: 108.2230
+        Non Nuoc Beach, lat: 16.0014, lng: 108.2583
+        Museum of Cham Sculpture, lat: 16.0740, lng: 108.2230
+        Hai Van Pass, lat: 16.1719, lng: 107.9689
+        Golden Bridge, lat: 15.9975, lng: 107.9886
+        Phap Lam Pagoda, lat: 16.0694, lng: 108.2169
+        Da Nang Cathedral, lat: 16.0739, lng: 108.2231
+        Cham Islands, lat: 15.9498, lng: 108.5098
+        Con Market, lat: 16.0612, lng: 108.2141
+        Sun World Amusement Park, lat: 16.0544, lng: 108.2022
+        Asia Park, lat: 16.0490, lng: 108.2136
+        Thuan Phuoc Bridge, lat: 16.0833, lng: 108.2402
+        Love Bridge, lat: 16.0604, lng: 108.2364
+        Danang Golf Club, lat: 15.9639, lng: 108.2997
+        Cao Dai Temple, lat: 16.0743, lng: 108.2341
+        Ban Co Peak, lat: 16.1403, lng: 108.2883
+        Than Tai Hot Springs Park, lat: 15.9762, lng: 108.2542
+        Ho Chi Minh and the Fifth Military Zone Museum, lat: 16.0607, lng: 108.2109
+        Da Nang Fine Arts Museum, lat: 16.0653, lng: 108.2217
+        Ngu Hanh Son, lat: 16.0067, lng: 108.2486
+        Lady Buddha Statue, lat: 16.1106, lng: 108.2836
+        Hoang Sa Exhibition House, lat: 16.0884, lng: 108.2197
+        Butterfly Park Da Nang, lat: 16.0541, lng: 108.2024
+        An Hai Beach, lat: 16.0615, lng: 108.2465
+        Taipei 101, lat: 25.0330, lng: 121.5645
+National Palace Museum, lat: 25.1024, lng: 121.5485
+Chiang Kai-Shek Memorial Hall, lat: 25.0349, lng: 121.5218
+Longshan Temple, lat: 25.0372, lng: 121.4999
+Taipei Zoo, lat: 24.9986, lng: 121.5811
+Elephant Mountain (Xiangshan), lat: 25.0274, lng: 121.5762
+Sun Yat-sen Memorial Hall, lat: 25.0409, lng: 121.5607
+Liberty Square, lat: 25.0345, lng: 121.5218
+Shilin Night Market, lat: 25.0881, lng: 121.5242
+Huashan 1914 Creative Park, lat: 25.0443, lng: 121.5301
+Songshan Cultural and Creative Park, lat: 25.0441, lng: 121.5611
+Taipei Astronomical Museum, lat: 25.0950, lng: 121.5181
+Yangmingshan National Park, lat: 25.1943, lng: 121.5608
+Dihua Street, lat: 25.0572, lng: 121.5106
+Jiufen, lat: 25.1092, lng: 121.8442
+Pingxi District (for Sky Lanterns), lat: 25.0254, lng: 121.7392
+Beitou Hot Springs, lat: 25.1369, lng: 121.5074
+Maokong Gondola, lat: 24.9689, lng: 121.5932
+Tamsui Old Street, lat: 25.1748, lng: 121.4305
+Raohe Street Night Market, lat: 25.0501, lng: 121.5737
+National Taiwan Museum, lat: 25.0423, lng: 121.5149
+Taipei Fine Arts Museum, lat: 25.0723, lng: 121.5247
+Daan Forest Park, lat: 25.0261, lng: 121.5363
+Miramar Entertainment Park (Ferris Wheel), lat: 25.0833, lng: 121.5608
+Ximending Shopping District, lat: 25.0418, lng: 121.5081
+Treasure Hill Artist Village, lat: 25.0112, lng: 121.5286
+Bopiliao Historical Block, lat: 25.0375, lng: 121.5022
+Qixing Mountain, lat: 25.1651, lng: 121.5263
+Confucius Temple, lat: 25.0723, lng: 121.5151
+Ningxia Night Market, lat: 25.0564, lng: 121.5156
       </관광지 정보>
+
+      If you move cities, you don't have to come back.
+      For example, you can fly from Da Nang to Hoi An and return to the airport from Hoi An.
+      Create popular itineraries that take into account travel. It must be a reasonable schedule
       
     `}]).then(async (result) => {
         result = result.replaceAll("```json", "");
