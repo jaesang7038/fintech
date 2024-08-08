@@ -79,21 +79,21 @@ const DayPlanPage: React.FC = () => {
                                 return s;
                             } else {
                                 try {
-                                    const img = await azureService.images(`${s.engName}`);
+                                    const img = await azureService.images(`${month}월의 ${s.engName}`);
                                     return {
                                         ...s,
                                         img
                                     };
                                 } catch (error) {
                                     try {
-                                        const img = await azureService.imagesAu(`${s.engName}`, "Dalle3");
+                                        const img = await azureService.imagesAu(`${month}월의 ${s.engName}`, "Dalle3");
                                         return {
                                             ...s,
                                             img
                                         };
                                     } catch (e) {
                                         try {
-                                            const img = await azureService.imagesAu(`${s.engName}`, "Dalle3-2");
+                                            const img = await azureService.imagesAu(`${month}월의 ${s.engName}`, "Dalle3-2");
                                             return {
                                                 ...s,
                                                 img

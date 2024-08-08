@@ -135,6 +135,9 @@ const RecommendationPage: React.FC = () => {
        ]
        </example> 
        총 최대 4개 도시까지만 추천해줘.
+
+       여행 월을 최대한 반영하고, 한국에서 출발 기준으로 여행 기간이 적절한 여행지를 추천해야해.
+       겨울에는 눈이 유명한 삿포로나 여름에는 휴양하기 좋은 여행지등을 추천해.
     `
 
     azureService.completions([{ role: "user", content: content }])

@@ -250,15 +250,15 @@ const LoadingPage: React.FC = () => {
               p.schedule.map(async (s: Schedule) => {
 
                 try {
-                  const img = await azureService.images(`${s.engName}`);
+                  const img = await azureService.images(`${month}월의 ${s.engName}`);
                   s.img = img; // 이미지를 추가
                 } catch (error) {
                   try {
-                    const img = await azureService.imagesAu(`${s.engName}`, "Dalle3");
+                    const img = await azureService.imagesAu(`${month}월의 ${s.engName}`, "Dalle3");
                     s.img = img; // 대체 이미지를 추가
                   } catch (e) {
                     try {
-                      const img = await azureService.imagesAu(`${s.engName}`, "Dalle3-2");
+                      const img = await azureService.imagesAu(`${month}월의 ${s.engName}`, "Dalle3-2");
                       s.img = img; // 대체 이미지를 추가
                     } catch (e2) {
 
@@ -297,7 +297,7 @@ const LoadingPage: React.FC = () => {
         응답은 <example>과 동일한 포맷으로 반환해.
         응답에는 JSON 이외의 문자열이 있으면 안돼. 응답을 json.parser() 로 사용할거니까 한번더 확인해.
 
-        관광지나 위주의 장소로 type을 추가해서 알려줘. (tourist)
+        관광지나 공항 위주의 장소로 type을 추가해서 알려줘. (tourist,airport)
         구체적 대명사로 알려줘.
         distance_spent는 이전 장소에서 현재 장소까지의 거리를 알려줘.
         하루 당 일정은 4개 이하로 잡아줘
@@ -415,6 +415,8 @@ const LoadingPage: React.FC = () => {
       시간순으로 일정을 만들어줘. 여행기간 : ${duration}박 ${duration + 1}일의 전체일정이 반드시 필요해.
       경도, 위도가 반드시 바다 한가운데 있지 않게 해야해.
       예를 들어 Arashiyama Bamboo Grove의 위치는 35.009392, 135.667007 야.
+      여행 일정의 첫 시작과 여행 일정의 마지막은 공항으로 반드시 끝나게해.
+      인천국제공항은 제외해.
                      
     `;
 

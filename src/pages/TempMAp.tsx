@@ -228,9 +228,9 @@ function Directions(props: Props) {
     const fetchDirections = async () => {
       if (!(directionsService && directionsRenderer)) return;
       try {
-        await getDirection(google.maps.TravelMode.DRIVING);
-      } catch (error) {
         await getDirection(google.maps.TravelMode.WALKING);
+      } catch (error) {        
+        await getDirection(google.maps.TravelMode.DRIVING);
         // try {
         //   alert("경로를 불러오는데 실패했습니다. 주소로 재시도 중입니다.")
         //   const originCoords = await getCoordinatesForAddress(props.origin?.engName || "");
