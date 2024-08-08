@@ -23,6 +23,9 @@ export const azureService = {
     const body = {
       messages: conversation,
       stream: false,
+      temperature: 1,
+      top_p: 0.95,
+      max_tokens: 16384
     };
 
     const result = await apiService.post(

@@ -234,7 +234,7 @@ export const useTravelStore = create<TravelState>((set) => ({
 
     ,
     mapInfo: [],
-    selectedDay: 1,
+    selectedDay: 0,
     setGender: (gender) => set({ gender }),
     setAgeGroup: (ageGroup) => set({ ageGroup }),
     setStartDate: (startDate) => set({ startDate }),

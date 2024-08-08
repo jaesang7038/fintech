@@ -213,7 +213,7 @@ const LoadingPage: React.FC = () => {
     // 처음에 애니메이션 텍스트를 보여주고, 1초 후에 상태를 변경
     setTimeout(() => {
       setShowNotice(true);
-    }, 6000);
+    }, 3000);
 
     const interval = setInterval(() => {
       if (showNotice) {
@@ -227,55 +227,126 @@ const LoadingPage: React.FC = () => {
           }
         });
       }
-    }, 3000);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [showNotice]);
 
 
   useEffect(() => {
-    azureService.completions([{ role: "user", content: content }]).then(async (result) => {
-      result = result.replaceAll("```json", "");
-      result = result.replaceAll("```", "");
-      console.log(result);
-      console.log(typeof (result));
-      let re = JSON.parse(result);
+    azureService.completions([
+      { role: "user", content: content }, 
+      { role: "system", content: `
+      너는 여행일정을 추천해주는 챗봇이야. 여행 기간과 시기에 따라 적절한 여행지 및 일정을 추천해야해. 
+      추천하는 관광지의 좌표는 무조건 정확해야해.
+      The longitude and latitude should be accurate to the nearest decimal point. 
+      longitude and latitude should be 100% accurate, so be sure to review them again and again.
 
-      setPlanList(re);
+      <관광지 정보>
+        Shuri Castle, lat: 26.2167, lng: 127.7193
+        Okinawa Churaumi Aquarium, lat: 26.6942, lng: 127.8779
+        American Village, lat: 26.3142, lng: 127.7558
+        Okinawa Peace Memorial Park, lat: 26.0938, lng: 127.7178
+        Kouri Island, lat: 26.7123, lng: 127.8695
+        Manza Cape, lat: 26.4967, lng: 127.8642
+        Himeyuri Peace Memorial, lat: 26.1105, lng: 127.6875
+        Gyokusendo Cave, lat: 26.1645, lng: 127.7557
+        Tsuboya Pottery District, lat: 26.2161, lng: 127.7165
+        Nakagusuku Castle, lat: 26.2974, lng: 127.8056
+        Okinawa World, lat: 26.1803, lng: 127.7558
+        Ishigaki Island, lat: 24.4471, lng: 124.1893
+        Bise Fukugi Tree Road, lat: 26.7022, lng: 127.8854
+        Nago Pineapple Park, lat: 26.6066, lng: 127.9834
+        Zakimi Castle, lat: 26.3966, lng: 127.7448
+        Ryukyu Village, lat: 26.3972, lng: 127.7422
+        Sefa-Utaki, lat: 26.1237, lng: 127.7677
+        Kokusaidori Street, lat: 26.2144, lng: 127.6792
+        Sesoko Island, lat: 26.6419, lng: 127.8627
+        Cape Zanpa, lat: 26.4367, lng: 127.7162
+        Taketomi Island, lat: 24.3236, lng: 124.0880
+        Mihama American Village, lat: 26.3142, lng: 127.7558
+        Sunset Beach, lat: 26.3347, lng: 127.7447
+        Cape Hedo, lat: 26.8704, lng: 128.2679
+        Kadena Air Base, lat: 26.3556, lng: 127.7675
+        Iriomote Island, lat: 24.4047, lng: 123.7787
+        Naminoue Shrine, lat: 26.2128, lng: 127.6793
+        Yaeyama Islands, lat: 24.4667, lng: 122.9833
+        Kokusaidori Yataimura, lat: 26.2146, lng: 127.6794
+        Awase Shrine, lat: 26.3293, lng: 127.8057
+        Patong Beach, lat: 7.8969, lng: 98.2957
+        Old Phuket Town, lat: 7.8806, lng: 98.3923
+        Big Buddha, lat: 7.8277, lng: 98.3126
+        Wat Chalong, lat: 7.8433, lng: 98.3381
+        Phang Nga Bay, lat: 8.1724, lng: 98.4793
+        Similan Islands, lat: 8.6451, lng: 97.6418
+        Phi Phi Islands, lat: 7.7407, lng: 98.7784
+        Kata Noi Beach, lat: 7.8056, lng: 98.2983
+        Nai Harn Beach, lat: 7.7736, lng: 98.3046
+        James Bond Island, lat: 8.2746, lng: 98.5012
+        Karon Viewpoint, lat: 7.8107, lng: 98.2976
+        Tiger Kingdom Phuket, lat: 7.9187, lng: 98.3332
+        Elephant Jungle Sanctuary Phuket, lat: 7.9576, lng: 98.3692
+        Splash Jungle Water Park, lat: 8.1070, lng: 98.3169
+        Kamala Beach, lat: 7.9519, lng: 98.2817
+        Phuket FantaSea, lat: 7.9570, lng: 98.2827
+        Rawai Beach, lat: 7.7805, lng: 98.3319
+        Gibbon Rehabilitation Project, lat: 8.0667, lng: 98.3639
+        Phuket Trickeye Museum, lat: 7.8845, lng: 98.3915
+        Bangla Road, lat: 7.8965, lng: 98.2956
+        Khao Sok National Park, lat: 8.9148, lng: 98.5281
+        Coral Island, lat: 7.7763, lng: 98.3678
+        Surin Beach, lat: 7.9755, lng: 98.2812
+        Ao Phang Nga National Park, lat: 8.2502, lng: 98.5086
+        Hanuman World, lat: 7.9181, lng: 98.3532
+        Promthep Cape, lat: 7.7738, lng: 98.3047
+        Sirinat National Park, lat: 8.0965, lng: 98.2987
+        Phuket Aquarium, lat: 7.8111, lng: 98.4055
+        Bang Pae Waterfall, lat: 8.0415, lng: 98.4256
+        Khao Rang Hill Viewpoint, lat: 7.8804, lng: 98.3923
+      </관광지 정보>
+      
+    `}]).then(async (result) => {
+        result = result.replaceAll("```json", "");
+        result = result.replaceAll("```", "");
+        console.log(result);
+        console.log(typeof (result));
+        let re = JSON.parse(result);
 
-      await Promise.all(
-        re.map(async (p: Plan, idx: number) => {
-          if (idx === 0) {
-            await Promise.all(
-              p.schedule.map(async (s: Schedule) => {
+        setPlanList(re);
 
-                try {
-                  const img = await azureService.images(`${month}월의 ${s.engName}`);
-                  s.img = img; // 이미지를 추가
-                } catch (error) {
-                  try {
-                    const img = await azureService.imagesAu(`${month}월의 ${s.engName}`, "Dalle3");
-                    s.img = img; // 대체 이미지를 추가
-                  } catch (e) {
-                    try {
-                      const img = await azureService.imagesAu(`${month}월의 ${s.engName}`, "Dalle3-2");
-                      s.img = img; // 대체 이미지를 추가
-                    } catch (e2) {
+        // await Promise.all(
+        //   re.map(async (p: Plan, idx: number) => {
+        //     if (idx === 0) {
+        //       await Promise.all(
+        //         p.schedule.map(async (s: Schedule) => {
 
-                    }
-                  }
-                }
-              })
-            );
-          }
-        })
-      );
+        //           try {
+        //             const img = await azureService.images(`${month}월의 ${s.engName}`);
+        //             s.img = img; // 이미지를 추가
+        //           } catch (error) {
+        //             try {
+        //               const img = await azureService.imagesAu(`${month}월의 ${s.engName}`, "Dalle3");
+        //               s.img = img; // 대체 이미지를 추가
+        //             } catch (e) {
+        //               try {
+        //                 const img = await azureService.imagesAu(`${month}월의 ${s.engName}`, "Dalle3-2");
+        //                 s.img = img; // 대체 이미지를 추가
+        //               } catch (e2) {
 
-      setPlanList([...re]);
+        //               }
+        //             }
+        //           }
+        //         })
+        //       );
+        //     }
+        //   })
+        // );
+
+        // setPlanList([...re]);
 
 
-      navigate('/day-plan');
-    })
+        navigate('/day-plan');
+      })
   }, []);
 
 
@@ -414,10 +485,14 @@ const LoadingPage: React.FC = () => {
       MapsRequestError: DIRECTIONS_ROUTE: ZERO_RESULTS: No route could be found between the origin and destination.가 안뜨는 경로로 추천해.
       시간순으로 일정을 만들어줘. 여행기간 : ${duration}박 ${duration + 1}일의 전체일정이 반드시 필요해.
       경도, 위도가 반드시 바다 한가운데 있지 않게 해야해.
-      예를 들어 Arashiyama Bamboo Grove의 위치는 35.009392, 135.667007 야.
-      여행 일정의 첫 시작과 여행 일정의 마지막은 공항으로 반드시 끝나게해.
-      인천국제공항은 제외해.
-                     
+      For example, the location of Arashiyama Bamboo Grove is 35.009392, 135.667007 yards.
+      Similan Islands has a longitude of approximately 97.6545 degrees and a latitude of approximately 8.5816 yards. 
+      The longitude and latitude should be accurate to the nearest decimal point. 
+      <important>
+      longitude and latitude should be 100% accurate, so be sure to review them again and again.
+      </important>
+      Be sure to start and end your itinerary at an airport.
+      Make sure to exclude Incheon International Airport.                     
     `;
 
 

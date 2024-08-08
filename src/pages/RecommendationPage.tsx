@@ -113,6 +113,7 @@ const RecommendationPage: React.FC = () => {
        총 최대 3개 도시까지만 추천해줘. 동일 나라에 관광지는 최대 2개까지만 제공해줘.
        한국은 제외해.
        Dalle-e-3에서 rejected 되지않게 engName, engDescription생성해!
+       description에는 해당 월에 해당 여행지를 추천하는 이유를 적어줘. (ex. 12월이고 삿포로를 추천했다면, 눈꽃 축제 및 설경때문에 추천한다는 등)
        
 
 

@@ -33,6 +33,7 @@ const DayPlanPage: React.FC = () => {
 
     useEffect(() => {
         setSelectedDay(1);
+        handleClickDay(1);
     }, []);
 
     useEffect(() => {
@@ -66,15 +67,16 @@ const DayPlanPage: React.FC = () => {
     const handleClickDay = async (id: number) => {
         console.log("id" + id);
         setSelectedDay(id);
-
-        const updatedPlanList = await Promise.all(
-            planList.map(async (p: Plan) => {
-                console.log("pid" +p.id)
+    
+        let tempPlanList = [...planList]; // 임시로 계획 목록을 복사합니다.
+    
+        await Promise.all(
+            planList.map(async (p: Plan, index: number) => {
+                console.log("pid" + p.id);
                 if (p.id === id) {
                     const updatedSchedule: Schedule[] = await Promise.all(
                         p.schedule.map(async (s: Schedule) => {
-
-                            console.log(s)
+                            console.log(s);
                             if (s.img) {
                                 return s;
                             } else {
@@ -106,17 +108,20 @@ const DayPlanPage: React.FC = () => {
                             }
                         })
                     );
-                    return {
+    
+                    tempPlanList[index] = {
                         ...p,
                         schedule: updatedSchedule
                     };
-                } else {
-                    return p;
+    
+                    // 각각의 계획이 업데이트될 때마다 임시 목록을 업데이트하고 화면을 갱신합니다.
+                    setPlanList([...tempPlanList]);
                 }
             })
         );
-
-        setPlanList(updatedPlanList);
+    
+        // 모든 작업이 완료된 후 한 번 더 목록을 갱신하여 최종적으로 확정합니다.
+        setPlanList([...tempPlanList]);
     }
 
     return (
@@ -138,7 +143,7 @@ const DayPlanPage: React.FC = () => {
                     <TempMap></TempMap>
                 </div>
                 <div className="places-list">
-                    {planList.filter(x => x.id === selectedDay)[0].schedule.map((place, index) => (
+                    {planList.filter(x => x.id === selectedDay)[0]?.schedule?.map((place, index) => (
                         <div key={index} className="place-item" data-distance={place.distance_spent}>
                             <div className={`icon ${place.type}`} data-index={index + 1}>
                                 {place.type === 'airport' && <Airplane></Airplane>}
