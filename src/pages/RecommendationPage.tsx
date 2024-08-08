@@ -143,16 +143,32 @@ const RecommendationPage: React.FC = () => {
         result = result.replaceAll("```", "");
         const parsedResult: recommendationInf[] = JSON.parse(result);
         setRecommendations(parsedResult);
+        let newResult = parsedResult;
         console.log(parsedResult);
         await Promise.all(
           parsedResult.map(async (r: recommendationInf, idx: number) => {            
             try {
-              const img = await azureService.images(`${r.engName}`);
+              const img = await azureService.images(`${month}월의 City : ${r.engName}   , description : ${r.engDescription}`);
               r.img = img; // 이미지를 추가
+              newResult = parsedResult.map((x,i)=> {
+                if(i !== idx)
+                  return x;
+                else {
+                  return r;
+                }
+              })
             } catch (error) {
               try {
                 const img = await azureService.imagesAu(`${month}월의 City : ${r.engName}   , description : ${r.engDescription}`,"Dalle3");
                 r.img = img; // 대체 이미지를 추가
+                newResult = parsedResult.map((x,i)=> {
+                  if(i !== idx)
+                    return x;
+                  else {
+                    return r;
+                  }
+                })
+                setRecommendations([...newResult]);
               } catch (e) {
 
               }

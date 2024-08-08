@@ -304,7 +304,7 @@ const LoadingPage: React.FC = () => {
         Dalle-e-3에서 rejected 되지않게 engName 생성해줘!
         schedule의 lat,lng로 google map api으로 Directions Service를 호출할거야. 
         경도, 위도를 한번 더 검토해서 정확하게 리턴해줘.
-        시간순으로 일정을 만들어줘.
+        시간순으로 일정을 만들어줘. 여행기간 : ${duration}박 ${duration + 1}일의 전체일정이 반드시 필요해.
 
         <example> 
         [
@@ -412,6 +412,7 @@ const LoadingPage: React.FC = () => {
       Dalle-e-3에서 rejected 되지않게 engName 생성해줘!
       schedule의 lat,lng로 google map api으로 Directions Service를 호출할거야. 
       MapsRequestError: DIRECTIONS_ROUTE: ZERO_RESULTS: No route could be found between the origin and destination.가 안뜨는 경로로 추천해.
+      시간순으로 일정을 만들어줘. 여행기간 : ${duration}박 ${duration + 1}일의 전체일정이 반드시 필요해.
                      
     `;
 
@@ -431,8 +432,8 @@ const LoadingPage: React.FC = () => {
             </div>
           </div>
           <div className='sol-event-wrap'>
-            <p className="notice" style={{ opacity: showNotice ? 1 : 0, transition: 'opacity 1s' }}>일본에서도 역시 SOL트래블!</p>
-            {eventList[7].eventList.map((event, index) => (
+            <p className="notice" style={{ opacity: showNotice ? 1 : 0, transition: 'opacity 1s' }}>SOL트래블⁺ 추천 혜택</p>
+            {eventList[0].eventList.map((event, index) => (
               <Collapse in={index <= currentIndex} timeout={500} key={index}>
                 <div className='sol-event-list'>
                   <div className='img-wrap'>
