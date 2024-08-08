@@ -133,9 +133,9 @@ const TempMap: React.FC = () => {
             disableDefaultUI
           >
             <Directions origin={origin} destination={destination} waypoints={waypoints} />
-            {mapInfo && mapInfo.map((x)=>{
+            {mapInfo && mapInfo.map((x,i)=>{
               return (
-                <MarkerWithInfowindow lat={x.lat} lng={x.lng} title={x.name} content={x.description} ></MarkerWithInfowindow>
+                <MarkerWithInfowindow lat={x.lat} lng={x.lng} title={x.name} content={x.description}  idx={i+1}></MarkerWithInfowindow>
               )
             })}
           </Map>
@@ -208,6 +208,11 @@ function Directions(props: Props) {
     directionsRenderer.setDirections(response);
     directionsRenderer.setOptions(
       {
+        polylineOptions: {
+          strokeColor: '#fa708b',
+          strokeWeight: 6,
+          strokeOpacity: 0.8
+        },
         suppressMarkers: true,
         // markerOptions: {
         //   title: "<code>test</code>"

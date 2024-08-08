@@ -213,7 +213,7 @@ const LoadingPage: React.FC = () => {
     // 처음에 애니메이션 텍스트를 보여주고, 1초 후에 상태를 변경
     setTimeout(() => {
       setShowNotice(true);
-    }, 500);
+    }, 6000);
 
     const interval = setInterval(() => {
       if (showNotice) {
@@ -227,7 +227,7 @@ const LoadingPage: React.FC = () => {
           }
         });
       }
-    }, 300);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [showNotice]);
@@ -413,6 +413,8 @@ const LoadingPage: React.FC = () => {
       schedule의 lat,lng로 google map api으로 Directions Service를 호출할거야. 
       MapsRequestError: DIRECTIONS_ROUTE: ZERO_RESULTS: No route could be found between the origin and destination.가 안뜨는 경로로 추천해.
       시간순으로 일정을 만들어줘. 여행기간 : ${duration}박 ${duration + 1}일의 전체일정이 반드시 필요해.
+      경도, 위도가 반드시 바다 한가운데 있지 않게 해야해.
+      예를 들어 Arashiyama Bamboo Grove의 위치는 35.009392, 135.667007 야.
                      
     `;
 

@@ -79,7 +79,7 @@ const RecommendationPage: React.FC = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowSubTitle(true);
-    }, 2000); // 1초 후에 애니메이션 시작
+    }, 4000); // 1초 후에 애니메이션 시작
 
     return () => clearTimeout(timer);
   }, []);
@@ -88,7 +88,7 @@ const RecommendationPage: React.FC = () => {
     if (showSubTitle) {
       const timer = setTimeout(() => {
         setShowRecommendations(true);
-      }, 4000); // 1초 후에 애니메이션 시작
+      }, 5000); // 1초 후에 애니메이션 시작
 
       return () => clearTimeout(timer);
     }

@@ -10,13 +10,14 @@ interface Props {
   lat: number,
   lng: number,
   title: string,
-  content: string
+  content: string,
+  idx: number
 }
 
 export const MarkerWithInfowindow = (props: Props) => {
   const [infowindowOpen, setInfowindowOpen] = useState(false);
   const [markerRef, marker] = useAdvancedMarkerRef();
-  const {lat, lng, title, content} = props;
+  const {lat, lng, title, content,idx} = props;
 
   return (
     <>
@@ -24,12 +25,14 @@ export const MarkerWithInfowindow = (props: Props) => {
         ref={markerRef}
         onClick={() => setInfowindowOpen(true)}
         position={{ lat, lng }}
-      // title={'AdvancedMarker that opens an Infowindow when clicked.'}
+        title={title}
       >
         <Pin
-          background={'#22ccff'}
+          background={'#3d91ff'}
           borderColor={'#1e89a1'}
           glyphColor={'#0f677a'}>
+            <p className='pin-number'>{idx}</p>
+
         </Pin>
 
       </AdvancedMarker>
